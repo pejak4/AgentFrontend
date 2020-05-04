@@ -69,7 +69,20 @@ class Login extends React.PureComponent {
     }
 
     loginHandler = async (event) => {
-        console.log(this.state.login);
+        event.preventDefault();
+        if (this.state.login.email !== '' && this.state.login.password !== '' && this.state.validation.email
+        && this.state.validation.password) {
+            const {email, password} = this.state.login;
+            const data = {email, password};
+
+            try {
+                const response = await axios.post('/login', data);
+                if (response)
+                    this.props.history.push('/');
+            } catch(err) {
+                console.log(err);
+            }
+        }
     }
 
     render() {
