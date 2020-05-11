@@ -3,6 +3,7 @@ import './Login.css';
 import axios from '../axios-objects';
 import {updateObject} from '../utility';
 import HamburgerMenu from '../HamburgerMenu/HamburgerMenu';
+import jwt_decode from 'jwt-decode';
 
 class Login extends React.PureComponent {
     constructor(props) {
@@ -77,8 +78,14 @@ class Login extends React.PureComponent {
 
             try {
                 const response = await axios.post('/login', data);
-                if (response)
+                if (response) {
+                    const expirationDate = new Date(new Date().getTime() + response.data.expiresIn * 1000);
+                    sessionStorage.setItem('token', response.data.accessToken);
+                    const jwtToken = jwt_decode(response.data.accessToken);
+                    sessionStorage.setItem('role', jwtToken.role);
+                    sessionStorage.setItem('expirationDate', expirationDate);
                     this.props.history.push('/');
+                }
             } catch(err) {
                 console.log(err);
             }
@@ -110,7 +117,7 @@ class Login extends React.PureComponent {
                         : <p className="text-invalid">Password must be minimum length of 6.</p>}
                         <a href="/" className="btn"
                         onClick={(event) => this.loginHandler(event)}>Sign in</a>
-                        <p>Don't have an account? Sign up here.</p>
+                        <p>Don't have an account? Sign up <a href="/registration" className="click-here">here.</a></p>
                     </div>
                 </header>
             </div>

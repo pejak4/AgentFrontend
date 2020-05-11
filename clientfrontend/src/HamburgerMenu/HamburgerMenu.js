@@ -2,6 +2,11 @@ import React from 'react';
 import './HamburgerMenu.css';
 
 class HamburgerMenu extends React.PureComponent {
+
+    logoutHandler = () => {
+        sessionStorage.clear();
+    }
+
     render() {
         return(
             <div className="menu-wrap">
@@ -14,7 +19,8 @@ class HamburgerMenu extends React.PureComponent {
                         <div>
                             <ul>
                                 <li><a href="/">Home</a></li>
-                                <li><a href="/login">Login/Registration</a></li>
+                                {sessionStorage.getItem('token') === null ? <li><a href="/login">Login/Registration</a></li> : null}
+                                {sessionStorage.getItem('token') !== null ? <li><a href="/" onClick={() => this.logoutHandler()}>Logout</a></li> : null}
                             </ul>
                         </div>
                     </div>

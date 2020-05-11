@@ -92,8 +92,3 @@
     color: red;
     margin: 0.2rem 0.2rem !important;
 }
-
-.click-here {
-    text-decoration: none;
-    color: var(--secondary-color);
-}
