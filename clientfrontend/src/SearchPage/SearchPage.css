@@ -1,9 +1,14 @@
 /* Header */
-.container {
+.containerSearch {
     max-width: 960px;
     margin: auto;
     overflow: hidden;
     padding: 0 3rem;
+}
+
+::-webkit-scrollbar {
+    width: 0px;  /* Remove scrollbar space */
+    background: transparent;  /* Optional: just make scrollbar invisible */
 }
 
 #showcase {
@@ -24,21 +29,89 @@
     z-index: -1;
 }
 
-#showcase .showcase-container {
+#showcase .showcase-containerSearch {
     display: flex;
     flex-direction: column;
     align-self: center;
-    justify-content: center;
     text-align: center;
     height: 100%;
 }
 
-#showcase h1 {
-    font-size: 4rem;
+.car-card {
+    border: 1px solid white;
+    margin: 0.25rem 0.25rem;
+    background: #fff;
+    color: #333;
+    border-radius: 5px;
 }
 
-#showcase p {
-    font-size: 1.3rem;
+.car-card:hover {
+    background: whitesmoke;
+}
+
+.car-card-inner {
+    width: 100%;
+    margin-left: 0px !important;
+    border-top: 1px solid rgb(196, 188, 188);
+    text-align: left !important;
+}
+
+.car-card-inner .left-side {
+    float: left;
+    width: 50%;
+    min-height: 100%;
+}
+
+.car-card-inner .right-side {
+    float: right;
+    width: 50%;
+    min-height: 100%;
+}
+
+.car-card-inner .right-side > a {
+    text-decoration: none;
+    color: #333;
+    transition: color 0.4s ease;
+}
+
+.car-card-inner .right-side > a:hover {
+    color: var(--secondary-color);
+}
+
+.car-card-inner .right-side > div > div {
+    float: left;
+    width: 50%;
+    min-height: 100%;
+    display: flex;
+}
+
+.car-card-inner .right-side > div > div > img {
+    width: 24px;
+    height: 24px;
+    align-self: center;
+}
+
+.car-card-inner .right-side .icon-text {
+    margin: 0;
+    display: inline-block;
+}
+
+.car-card-inner > div > img {
+    width: 350px;
+    height: 250px;
+    margin: 0.3rem 0.3rem;
+    border-radius: 50%;
+}
+
+.car-card-inner label {
+    display: block;
+}
+
+#showcase h3 {
+    font-size: 1.5rem;
+    text-align: left !important;
+    margin: 0.4rem 1rem;
+    align-self: flex-start;
 }
 
 #showcase > div .btn {
@@ -55,11 +128,4 @@
 
 #showcase > div .btn:hover {
     opacity: 0.7;
-}
-
-#showcase > div > select {
-    height: 40px;
-    outline: none;
-    border-radius: 5px;
-    width: 50%;
 }
