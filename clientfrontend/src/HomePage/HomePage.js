@@ -4,6 +4,7 @@ import HamburgerMenu from '../HamburgerMenu/HamburgerMenu';
 import DatePicker from 'react-datepicker';
 import {updateObject} from '../utility';
 import axios from '../axios-objects';
+import {Redirect} from 'react-router-dom';
 
 class HomePage extends React.PureComponent {
 
@@ -16,7 +17,9 @@ class HomePage extends React.PureComponent {
                 endCity: 'Kula',
                 startDate: new Date(new Date().setTime(new Date().getTime() + 2 * 86400000)),
                 endDate: new Date(new Date().setTime(new Date().getTime() + 3 * 86400000))
-            }
+            },
+            redirect: false,
+            cars: []
         }
     }
 
@@ -55,9 +58,13 @@ class HomePage extends React.PureComponent {
         const data = {startCity, endCity, startDate, endDate};
         
         const response = await axios.post('/searchCars', data);
-        if (response) {
-            console.log(response);
-        }
+        if (response)
+            this.setState({cars: response.data, redirect: true});
+    }
+
+    renderRedirect = () => {
+        if (this.state.redirect)
+            return <Redirect to={{pathname: "/search", state: {cars: this.state.cars}}}/>
     }
 
     render() {
@@ -115,6 +122,7 @@ class HomePage extends React.PureComponent {
                         </div>
                         
                         <a href="/search" className="btn" onClick={(event) => this.searchHandler(event)}>Search for available cars</a>
+                        {this.renderRedirect()}
                     </div>
                 </header>
             </div>
