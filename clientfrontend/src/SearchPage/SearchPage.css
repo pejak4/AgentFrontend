@@ -6,6 +6,17 @@
     padding: 0 3rem;
 }
 
+.containerSearch .filterDiv {
+    margin: 20px 10px;
+    background: #fff;
+    border-radius: 5px;
+}
+
+.containerSearch > div .select-brand {
+    float: left;
+    margin-left: 20px !important;
+}
+
 ::-webkit-scrollbar {
     width: 0px;  /* Remove scrollbar space */
     background: transparent;  /* Optional: just make scrollbar invisible */
@@ -68,14 +79,18 @@
     min-height: 100%;
 }
 
-.car-card-inner .right-side > a {
+.car-card-inner .right-side .details-rent {
+    margin-top: 180px;
+}
+
+.car-card-inner .right-side > div > div > a {
     text-decoration: none;
-    color: #333;
+    color: var(--secondary-color);
     transition: color 0.4s ease;
 }
 
-.car-card-inner .right-side > a:hover {
-    color: var(--secondary-color);
+.car-card-inner .right-side > div > div > a:hover {
+    color: var(--third-color);
 }
 
 .car-card-inner .right-side > div > div {
